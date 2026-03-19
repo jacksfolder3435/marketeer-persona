@@ -294,7 +294,7 @@ export default function SocialCard({ persona, cardRef, theme = "dark" }: SocialC
       {/* ── Bottom watermark ── */}
       <div className="relative z-10 flex items-end justify-center px-8 py-5">
         <div className="tracking-widest" style={{ fontSize: "9px", color: t.watermark, fontFamily: "'Neue Haas Unica', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
-          lunarstrategy.com/persona
+          marketeer.lunarstrategy.com
         </div>
       </div>
     </div>
@@ -484,7 +484,7 @@ export async function renderCardToCanvas(persona: PersonaResult, theme: CardThem
   // ── Watermark ──
   ctx.fillStyle = t.watermark; ctx.font = `400 8px ${FONT}`;
   ctx.textAlign = "center"; ctx.textBaseline = "top";
-  ctx.fillText("lunarstrategy.com/persona", W / 2, DIV_Y + 12);
+  ctx.fillText("marketeer.lunarstrategy.com", W / 2, DIV_Y + 12);
 
   ctx.restore();
   return canvas;
