@@ -1,4 +1,4 @@
-import { execFile } from "child_process";
+import { spawn } from "child_process";
 import { SYSTEM_PROMPT, buildUserPrompt } from "../prompt.js";
 import type { XTweet } from "./twitter.js";
 
@@ -24,23 +24,44 @@ function runClaude(prompt: string): Promise<string> {
   return new Promise((resolve, reject) => {
     const fullPrompt = `${SYSTEM_PROMPT}\n\n${prompt}`;
 
-    execFile(
-      "claude",
-      ["-p", fullPrompt, "--model", "claude-sonnet-4-20250514"],
-      {
-        timeout: 60000,
-        maxBuffer: 1024 * 1024,
-        env: { ...process.env },
-      },
-      (err, stdout, stderr) => {
-        if (err) {
-          console.error("Claude CLI error:", stderr);
-          reject(new Error(`Claude CLI failed: ${err.message}`));
-          return;
-        }
-        resolve(stdout.trim());
+    const proc = spawn("claude", ["-p", "--model", "claude-sonnet-4-20250514"], {
+      env: { ...process.env },
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+
+    let stdout = "";
+    let stderr = "";
+
+    proc.stdout.on("data", (data: Buffer) => {
+      stdout += data.toString();
+    });
+
+    proc.stderr.on("data", (data: Buffer) => {
+      stderr += data.toString();
+    });
+
+    proc.on("close", (code) => {
+      if (code !== 0) {
+        console.error("Claude CLI stderr:", stderr.slice(0, 500));
+        reject(new Error(`Claude CLI exited with code ${code}`));
+        return;
       }
-    );
+      resolve(stdout.trim());
+    });
+
+    proc.on("error", (err) => {
+      reject(new Error(`Claude CLI spawn failed: ${err.message}`));
+    });
+
+    // Write prompt to stdin and close
+    proc.stdin.write(fullPrompt);
+    proc.stdin.end();
+
+    // Timeout after 60 seconds
+    setTimeout(() => {
+      proc.kill("SIGTERM");
+      reject(new Error("Claude CLI timed out after 60 seconds"));
+    }, 60000);
   });
 }
 
@@ -62,7 +83,7 @@ export async function analyzePersona(
   try {
     parsed = JSON.parse(jsonStr);
   } catch (e) {
-    console.error("Failed to parse Claude response:", raw);
+    console.error("Failed to parse Claude response:", raw.slice(0, 500));
     throw new Error("Claude returned invalid JSON");
   }
 
