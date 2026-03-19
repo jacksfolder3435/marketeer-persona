@@ -72,11 +72,20 @@ export async function analyzePersona(
   const userPrompt = buildUserPrompt(username, tweets);
   const raw = await runClaude(userPrompt);
 
-  // Strip any markdown code fences if Claude wraps the JSON
+  // Extract JSON from response — handle preamble text, code fences, etc.
   let jsonStr = raw;
+
+  // Try code fences first
   const fenceMatch = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
   if (fenceMatch) {
     jsonStr = fenceMatch[1].trim();
+  } else {
+    // Find the first { and last } to extract the JSON object
+    const firstBrace = raw.indexOf("{");
+    const lastBrace = raw.lastIndexOf("}");
+    if (firstBrace !== -1 && lastBrace > firstBrace) {
+      jsonStr = raw.slice(firstBrace, lastBrace + 1);
+    }
   }
 
   let parsed: ClaudePersonaResult;
