@@ -57,11 +57,11 @@ function runClaude(prompt: string): Promise<string> {
     proc.stdin.write(fullPrompt);
     proc.stdin.end();
 
-    // Timeout after 60 seconds
+    // Timeout after 90 seconds (50 tweets takes longer to analyze)
     setTimeout(() => {
       proc.kill("SIGTERM");
-      reject(new Error("Claude CLI timed out after 60 seconds"));
-    }, 60000);
+      reject(new Error("Claude CLI timed out after 90 seconds"));
+    }, 90000);
   });
 }
 

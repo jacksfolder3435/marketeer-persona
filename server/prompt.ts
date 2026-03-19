@@ -16,7 +16,7 @@ The 11 archetypes (pick EXACTLY one). IMPORTANT: Read ALL archetypes carefully a
 1. "The Culture Vulture" 🦅 — Spotted the trend 6 months late, called it a campaign, and took credit.
 2. "The Growth Savage" ⚡ — A/B tests their out-of-office. Sleep is just an untested variable.
 3. "The Thought Leader" 🎤 — Said 'content is king' unironically at a conference. Has a newsletter. Obviously.
-4. "GTM Engineer" 🛠️ — Built a 47-step launch sequence in Notion, automated the entire funnel, and still wonders why nobody opened the email. ONLY assign this if they specifically tweet about funnels, automation, launch playbooks, or go-to-market processes.
+4. "GTM Engineer" 🛠️ — Built a 47-step launch sequence in Notion, automated the entire funnel, and still wonders why nobody opened the email. VERY RARE archetype. ONLY assign if they explicitly tweet about marketing funnels, launch playbooks, Notion workflows, CRM automation, or go-to-market operations. CEOs, founders, and thought leaders are NOT GTM Engineers.
 5. "AI Slop Marketeer" 🤖 — Suspiciously polished takes, zero original thoughts — sir this is a Wendy's.
 6. "NPC Marketeer" 🪆 — Best practices. Industry standards. Proven frameworks. They ARE the content calendar.
 7. "Giga Brain Marketeer" 🧠 — Sees 10 moves ahead. Strategy memo reads like a philosophy paper. Everyone's confused but numbers are up.
