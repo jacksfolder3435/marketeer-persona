@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url('/fonts/NeueHaasUnicaPro-Light.ttf') format('truetype');
+  src: url('./assets/fonts/NeueHaasUnicaPro-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: 'Neue Haas Unica';
-  src: url('/fonts/Neue_Haas_Unica_W06_Bold.ttf') format('truetype');
+  src: url('./assets/fonts/Neue_Haas_Unica_W06_Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -98,51 +98,3 @@
   font-family: 'Neue Haas Unica', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-/* Grid overlay - removed */
-
-/* Card glow line — unused in current theme */
-
-/* Pipeline line */
-.pipeline-line {
-  position: absolute;
-  left: 28px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, hsl(248 100% 34% / 0.2), hsl(248 100% 34% / 0.1));
-  border-radius: 2px;
-  z-index: 1;
-}
-
-.pipeline-glow {
-  position: absolute;
-  left: 24px;
-  top: 0;
-  bottom: 0;
-  width: 10px;
-  background: linear-gradient(to bottom, hsl(248 100% 34% / 0.05), hsl(248 100% 34% / 0.02), hsl(248 100% 34% / 0.05));
-  filter: blur(6px);
-  z-index: 1;
-}
-
-/* Scroll hint pulse */
-@keyframes pulse-hint {
-  0%, 100% { opacity: 0.25; transform: translateX(-50%) translateY(0); }
-  50% { opacity: 0.5; transform: translateX(-50%) translateY(4px); }
-}
-
-.scroll-hint-anim {
-  animation: pulse-hint 2.5s ease-in-out infinite;
-}
-
-/* Bracket corners */
-.bracket {
-  position: fixed;
-  z-index: 20;
-  opacity: 0.15;
-}
-
-.bracket svg {
-  width: 36px;
-  height: 36px;
-}

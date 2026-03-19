@@ -5,25 +5,14 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: "/marketeer-persona/",
   server: {
     host: "::",
     port: 8080,
-    hmr: {
-      overlay: false,
-    },
     proxy: {
-      '/api/twitter': {
-        target: 'https://api.twitter.com',
+      "/marketeer-persona/api": {
+        target: "http://localhost:3001",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/twitter/, ''),
-        configure: (proxy) => {
-          proxy.on('proxyReq', (proxyReq) => {
-            const token = process.env.X_BEARER_TOKEN;
-            if (token) {
-              proxyReq.setHeader('Authorization', `Bearer ${token}`);
-            }
-          });
-        },
       },
     },
   },
