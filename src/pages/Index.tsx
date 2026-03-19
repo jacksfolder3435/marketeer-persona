@@ -126,7 +126,7 @@ export default function Index() {
                 className="text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight mb-4 sm:mb-6"
                 style={{ color: BRAND, fontWeight: 700, letterSpacing: "-0.03em" }}
               >
-                discover your<br />Marketeer persona
+                discover your Marketeer persona
               </motion.h1>
 
               <motion.p
