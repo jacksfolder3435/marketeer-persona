@@ -42,7 +42,7 @@ export async function resolveUserId(username: string): Promise<string> {
   return data.data.id;
 }
 
-export async function fetchTweets(username: string, count: number = 10): Promise<XTweet[]> {
+export async function fetchTweets(username: string, count: number = 50): Promise<XTweet[]> {
   const userId = await resolveUserId(username);
 
   const params = new URLSearchParams({

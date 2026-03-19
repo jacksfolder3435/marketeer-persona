@@ -1,7 +1,7 @@
 import type { PersonaResult } from "./personaGenerator";
 
 export async function analyzePersona(username: string): Promise<PersonaResult> {
-  const res = await fetch("/marketeer-persona/api/persona", {
+  const res = await fetch("/api/persona", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username }),
